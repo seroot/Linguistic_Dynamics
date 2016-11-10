@@ -18,7 +18,7 @@ class Person(object):
         self.index = index # integer
         
         # These variables must be computed
-        self.Utility = 0.0 # Float
+        self.utility = 0.0 # Float
         self.neighbor_list = [] # A list of inices
         if self.language == 'a':
             self.color = 'r'
@@ -29,7 +29,7 @@ class Person(object):
     def move(self):
         # Generate random x and y
         x = Parameters.l*np.random.uniform(low=-1.0, high=1.0)
-        y = math.sqrt( Parameters.l - x**2)
+        y = math.sqrt( Parameters.l**2 - x**2)
         z = np.random.uniform(low=0.0, high = 1.0)
         
         if z < 0.5:
@@ -39,7 +39,8 @@ class Person(object):
         new_position[0] += x
         new_position[1] += y
         # Check to see if the new position is in the box
-        if new_position[0] < 1.0 and new_position[1] < 1.0 and new_position[0] > 0.0 and new_position[1] > 0.0:
+        logic = (new_position[0] < 1.0 and new_position[1] < 1.0 and new_position[0] > 0.0 and new_position[1] > 0.0)
+        if logic:
             self.position = new_position
 
         return
